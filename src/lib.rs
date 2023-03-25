@@ -26,6 +26,7 @@ pub struct Popup {
     pub time: std::time::Instant,
     pub residence_time: f64,
     pub retracting: bool,
+    pub started: bool,
 }
 
 impl Popup {
@@ -43,6 +44,7 @@ impl Popup {
             time: std::time::Instant::now(),
             residence_time,
             retracting: false,
+            started: false,
         }
     }
 
@@ -64,6 +66,7 @@ impl Popup {
     }
 
     pub fn reset(&mut self) {
+        self.started = true;
         self.retracting = false;
         self.time = std::time::Instant::now();
         self.ease = easing::Easing::new(0.0_f64, self.start, self.end - self.start, self.duration);
